@@ -33,6 +33,12 @@ suite('Webpack', function() {
       // node --harmony node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --ui tdd test/test*
       entry: './src/index.js',
       output: {path: DIST_PATH},
+      // Must signal that standard NodeJS library, 'net' is unavailable.
+      // This is done by making require('net') an empty object.
+      node: {
+        net: 'empty',
+        tls: 'empty',
+      },
     }, function(err, stats) {
       assert(!err, `Expected no error but got ${err}`);
       assert(!stats.hasErrors(), `Expected no stats errors but got ${stats.toJson().errors}`);

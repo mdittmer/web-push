@@ -301,7 +301,11 @@ suite('Test Generate Request Details', function() {
   });
 
   test('Proxy option', function() {
-    this.skip();
+    // Proxy option requires HttpsProxyAget, which requires 'net' standard library.
+    // Contexts that don't support 'net' must denote otherwise by making
+    // require('net') falsey.
+    // E.g., webpack configuration: {... node: {net: false}, ...}.
+    Object.keys(require('net')).length || this.skip();
     let subscription = { endpoint: 'https://127.0.0.1:8080' };
     let message;
     let extraOptions = {
@@ -316,7 +320,11 @@ suite('Test Generate Request Details', function() {
   });
 
   test('Proxy option as an object', function() {
-    this.skip();
+    // Proxy option requires HttpsProxyAget, which requires 'net' standard library.
+    // Contexts that don't support 'net' must denote otherwise by making
+    // require('net') return an empty object.
+    // E.g., webpack configuration: {... node: {net: false}, ...}.
+    Object.keys(require('net')).length || this.skip();
     let subscription = {
       endpoint: 'https://127.0.0.1:8080'
     };
