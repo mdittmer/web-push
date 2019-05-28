@@ -7,7 +7,7 @@ const https = require('https');
 // Load HttpsProxyAgent in contexts that support the standard 'net' library.
 // Other contexts must denote otherwise by making require('net') falsey.
 // E.g., webpack configuration: {... node: {net: false}, ...}.
-const HttpsProxyAgent = Object.keys(require('net')).length && require('https-proxy-agent');
+const HttpsProxyAgent = Object.keys(require('net')).length && require('https-proxy-agent'); // eslint-disable-line global-require
 
 const WebPushError = require('./web-push-error.js');
 const vapidHelper = require('./vapid-helper.js');

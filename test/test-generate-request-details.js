@@ -305,7 +305,7 @@ suite('Test Generate Request Details', function() {
     // Contexts that don't support 'net' must denote otherwise by making
     // require('net') falsey.
     // E.g., webpack configuration: {... node: {net: false}, ...}.
-    Object.keys(require('net')).length || this.skip();
+    Object.keys(require('net')).length || this.skip(); // eslint-disable-line no-unused-expressions
     let subscription = { endpoint: 'https://127.0.0.1:8080' };
     let message;
     let extraOptions = {
@@ -324,7 +324,7 @@ suite('Test Generate Request Details', function() {
     // Contexts that don't support 'net' must denote otherwise by making
     // require('net') return an empty object.
     // E.g., webpack configuration: {... node: {net: false}, ...}.
-    Object.keys(require('net')).length || this.skip();
+    Object.keys(require('net')).length || this.skip(); // eslint-disable-line no-unused-expressions
     let subscription = {
       endpoint: 'https://127.0.0.1:8080'
     };
