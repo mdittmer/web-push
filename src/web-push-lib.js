@@ -3,7 +3,6 @@
 const urlBase64 = require('urlsafe-base64');
 const url = require('url');
 const https = require('https');
-const HttpsProxyAgent = require('https-proxy-agent');
 
 const WebPushError = require('./web-push-error.js');
 const vapidHelper = require('./vapid-helper.js');
@@ -167,12 +166,7 @@ WebPushLib.prototype.generateRequestDetails = function(subscription, payload, op
       }
 
       if (options.proxy) {
-        if (typeof options.proxy === 'string'
-          || typeof options.proxy.host === 'string') {
-          proxy = options.proxy;
-        } else {
-          console.warn('Attempt to use proxy option, but invalid type it should be a string or proxy options object.');
-        }
+        console.warn('Attempt to use unsupported WebPushLib.generateRequestDetails option: "proxy"');
       }
     }
 
@@ -301,7 +295,7 @@ WebPushLib.prototype.sendNotification = function(subscription, payload, options)
       httpsOptions.method = requestDetails.method;
 
       if (requestDetails.proxy) {
-        httpsOptions.agent = new HttpsProxyAgent(requestDetails.proxy);
+        reject(new Error('WebPushLib.prototype.sendNotification: Unsupported requestDetails option: "proxy"'));
       }
 
       const pushRequest = https.request(httpsOptions, function(pushResponse) {

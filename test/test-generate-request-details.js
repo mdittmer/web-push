@@ -301,6 +301,7 @@ suite('Test Generate Request Details', function() {
   });
 
   test('Proxy option', function() {
+    this.skip();
     let subscription = { endpoint: 'https://127.0.0.1:8080' };
     let message;
     let extraOptions = {
@@ -315,6 +316,7 @@ suite('Test Generate Request Details', function() {
   });
 
   test('Proxy option as an object', function() {
+    this.skip();
     let subscription = {
       endpoint: 'https://127.0.0.1:8080'
     };
